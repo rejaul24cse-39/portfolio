@@ -1,155 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-        nav {
-            background-color: #333;
-            padding: 1rem;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #4CAF50;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        .contact-content {
-            background: #f4f4f4;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-        .contact-item {
-            margin-bottom: 1.5rem;
-        }
-        .contact-item h2 {
-            color: #4CAF50;
-            margin-bottom: 0.5rem;
-        }
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .form-group textarea {
-            min-height: 150px;
-        }
-        .submit-btn {
-            background: #4CAF50;
-            color: white;
-            padding: 0.7rem 2rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .submit-btn:hover {
-            background: #45a049;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Contact - Md. Rajaul Islam</title>
+  <!-- Core styles for layout, nav dropdowns, contact form and page design -->
+  <style>
+    :root { --bg:#0b0f17; --card:#101725; --text:#e6edf3; --muted:#9fb0c3; --brand:#5da9ff; --brand-2:#7af1c6; --ring:rgba(93,169,255,.35); }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;color:var(--text);background:radial-gradient(1200px 600px at 10% -10%, rgba(93,169,255,.15), transparent 60%), radial-gradient(900px 500px at 110% -20%, rgba(122,241,198,.12), transparent 60%), var(--bg)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px,92%);margin:0 auto}
+    /* ===== Navigation with dropdowns (About, Skills, Projects, Gallery, Contact) ===== */
+    .site-header{position:sticky;top:0;backdrop-filter:blur(8px);background:rgba(11,15,23,.6);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px}
+    .brand{font-weight:700;letter-spacing:.4px;color:var(--text)}
+    .menu{display:flex;gap:16px;align-items:center;margin:0;padding:0}
+    .menu>li{position:relative;list-style:none}
+    .menu>li>button,.menu>li>a{background:transparent;border:0;color:var(--text);font:inherit;padding:8px 10px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+    .menu>li>button:hover,.menu>li>a:hover{background:rgba(255,255,255,.06)}
+    .caret{width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-2px;opacity:.8}
+    .dropdown{position:absolute;top:calc(100% + 8px);left:0;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px;min-width:220px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:none}
+    .menu>li:focus-within .dropdown,.menu>li:hover .dropdown{display:grid}
+    .dropdown a{padding:10px;border-radius:8px;color:var(--muted);display:grid;grid-template-columns:22px 1fr;align-items:center;gap:10px}
+    .dropdown a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+    /* ===== Contact Page ===== */
+    .page{padding:48px 0;border-top:1px solid rgba(255,255,255,.06)}
+    h1{font-size:clamp(32px,5vw,48px);margin:0 0 16px}
+    h2{font-size:24px;margin:24px 0 12px;color:var(--brand-2)}
+    p{color:var(--muted);line-height:1.6}
+    .contact-content{background:var(--card);padding:32px;border-radius:16px;border:1px solid rgba(255,255,255,.08);margin-bottom:32px}
+    .contact-item{margin-bottom:24px}
+    .contact-item h2{margin-top:0}
+    .contact-form{background:var(--card);padding:32px;border-radius:16px;border:1px solid rgba(255,255,255,.08)}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;margin-bottom:8px;color:var(--text);font-weight:500}
+    .form-group input,.form-group textarea{width:100%;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.03);color:var(--text);font:inherit}
+    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+    .form-group textarea{min-height:150px;resize:vertical}
+    .submit-btn{background:linear-gradient(180deg, rgba(93,169,255,.8), rgba(93,169,255,.6));color:var(--text);padding:12px 24px;border:1px solid rgba(93,169,255,.5);border-radius:10px;cursor:pointer;font-size:16px;font-weight:600;box-shadow:0 6px 24px rgba(93,169,255,.25);transition:all .3s ease}
+    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(93,169,255,.35)}
+    /* ===== Responsive ===== */
+    @media (max-width:820px){.menu{gap:8px}.contact-content,.contact-form{padding:24px}}
+  </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="skills/html-css-upload.html">Skills</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <h1>Contact Me</h1>
-        
-        <div class="contact-content">
-            <div class="contact-item">
-                <h2>Get In Touch</h2>
-                <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
-            </div>
-
-            <div class="contact-item">
-                <h2>Contact Information</h2>
-                <p><strong>Email:</strong> john.doe@example.com</p>
-                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                <p><strong>Location:</strong> New York, NY</p>
-            </div>
-
-            <div class="contact-item">
-                <h2>Social Media</h2>
-                <p><strong>LinkedIn:</strong> linkedin.com/in/johndoe</p>
-                <p><strong>GitHub:</strong> github.com/johndoe</p>
-                <p><strong>Twitter:</strong> @johndoe</p>
-            </div>
-        </div>
-
-        <div class="contact-form">
-            <h2>Send a Message</h2>
-            <form>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject:</label>
-                    <input type="text" id="subject" name="subject" placeholder="Subject">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
+  <!-- ===== Site Header with 5 core dropdown menus ===== -->
+  <header class="site-header">
+    <div aria-label="Primary" class="container nav" role="navigation">
+      <a class="brand" href="index.html">Md. Rajaul Islam</a>
+      <ul class="menu" role="menubar">
+        <!-- About dropdown: keep 2-3 quick links for future pages -->
+        <li role="none">
+          <button aria-expanded="false" aria-haspopup="true" role="menuitem">About <span class="caret"></span></button>
+          <div aria-label="About" class="dropdown" role="menu">
+            <a href="about.html"><span class="dot"></span>About Me</a>
+            <a href="index.html#about"><span class="dot"></span>Intro Section</a>
+            <a href="#contact"><span class="dot"></span>Contact (this page)</a>
+          </div>
+        </li>
+        <!-- Skills dropdown: 3 core areas -->
+        <li role="none">
+          <button aria-expanded="false" aria-haspopup="true" role="menuitem">Skills <span class="caret"></span></button>
+          <div aria-label="Skills" class="dropdown" role="menu">
+            <a href="index.html#skills"><span class="dot"></span>Frontend</a>
+            <a href="index.html#skills"><span class="dot"></span>Backend</a>
+            <a href="index.html#skills"><span class="dot"></span>Tools</a>
+          </div>
+        </li>
+        <!-- Projects dropdown: link to page and section -->
+        <li role="none">
+          <button aria-expanded="false" aria-haspopup="true" role="menuitem">Projects <span class="caret"></span></button>
+          <div aria-label="Projects" class="dropdown" role="menu">
+            <a href="projects.html"><span class="dot"></span>All Projects</a>
+            <a href="index.html#projects"><span class="dot"></span>Highlights</a>
+            <a href="projects.html#featured"><span class="dot"></span>Featured Work</a>
+          </div>
+        </li>
+        <!-- Gallery dropdown: categories -->
+        <li role="none">
+          <button aria-expanded="false" aria-haspopup="true" role="menuitem">Gallery <span class="caret"></span></button>
+          <div aria-label="Gallery" class="dropdown" role="menu">
+            <a href="index.html#gallery"><span class="dot"></span>All</a>
+            <a href="index.html#gallery" data-filter="web"><span class="dot"></span>Web Design</a>
+            <a href="index.html#gallery" data-filter="photo"><span class="dot"></span>Photography</a>
+            <a href="index.html#gallery" data-filter="logos"><span class="dot"></span>Logos</a>
+          </div>
+        </li>
+        <!-- Contact dropdown: ways to reach -->
+        <li role="none">
+          <button aria-expanded="false" aria-haspopup="true" role="menuitem">Contact <span class="caret"></span></button>
+          <div aria-label="Contact" class="dropdown" role="menu">
+            <a href="#contact"><span class="dot"></span>Contact Form</a>
+            <a href="#contact-info"><span class="dot"></span>Contact Info</a>
+            <a href="#social"><span class="dot"></span>Social Media</a>
+          </div>
+        </li>
+      </ul>
     </div>
+  </header>
+
+  <!-- ===== Main Contact Content ===== -->
+  <main class="container">
+    <section class="page" id="contact">
+      <h1>Contact Me</h1>
+      
+      <!-- Contact Information -->
+      <div class="contact-content" id="contact-info">
+        <div class="contact-item">
+          <h2>Get In Touch</h2>
+          <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
+        </div>
+        <div class="contact-item">
+          <h2>Contact Information</h2>
+          <p><strong>Email:</strong> rejaul24cse@example.com</p>
+          <p><strong>Phone:</strong> +880 1XXX-XXXXXX</p>
+          <p><strong>Location:</strong> Dhaka, Bangladesh</p>
+        </div>
+        <div class="contact-item" id="social">
+          <h2>Social Media</h2>
+          <p><strong>GitHub:</strong> <a href="https://github.com/rejaul24cse-39" rel="noopener" target="_blank">github.com/rejaul24cse-39</a></p>
+          <p><strong>LinkedIn:</strong> linkedin.com/in/rajaul-islam</p>
+          <p><strong>Twitter:</strong> @rajaul_islam</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2>Send a Message</h2>
+        <form>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input id="name" name="name" placeholder="Your Name" required="" type="text"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" name="email" placeholder="your.email@example.com" required="" type="email"/>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input id="subject" name="subject" placeholder="Subject" type="text"/>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Your message here..." required=""></textarea>
+          </div>
+          <button class="submit-btn" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer (optional placeholder) ===== -->
+  <footer class="container page">
+    <p>© 2025 Md. Rajaul Islam. All rights reserved.</p>
+  </footer>
 </body>
 </html>
