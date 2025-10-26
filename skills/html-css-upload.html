@@ -1,156 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upload Project - HTML & CSS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML & CSS Skills - Portfolio</title>
   <style>
+    /* Global Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f7fb;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
     }
-    /* Navigation Bar Styles */
+
+    /* Navigation Styles */
     nav {
-      background-color: #333;
-      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
+
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
       gap: 2rem;
+      flex-wrap: wrap;
     }
-    nav ul li {
-      position: relative;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #4CAF50;
-    }
-    /* Dropdown Menu Styles */
+
+    /* Dropdown Menu */
     .dropdown {
       position: relative;
-      display: inline-block;
     }
+
+    .dropbtn {
+      background-color: transparent;
+      color: #333;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .dropbtn:hover {
+      color: #667eea;
+    }
+
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #444;
+      background-color: white;
       min-width: 200px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
+      border-radius: 8px;
+      overflow: hidden;
       top: 100%;
       left: 0;
     }
+
     .dropdown-content a {
-      color: white;
+      color: #333;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      font-size: 1rem;
+      transition: background-color 0.3s ease;
     }
+
     .dropdown-content a:hover {
-      background-color: #555;
-      color: #4CAF50;
+      background-color: #667eea;
+      color: white;
     }
+
     .dropdown:hover .dropdown-content {
       display: block;
     }
-    .dropbtn {
-      background-color: transparent;
-      color: white;
-      padding: 0;
-      font-size: 1.1rem;
-      border: none;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    .dropbtn:hover {
-      color: #4CAF50;
-    }
-    /* Main Content Styles */
+
+    /* Main Content */
     main {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .intro {
+      text-align: center;
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Demo Examples Section */
+    .examples-section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: #667eea;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Project Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Image Container with Hover Effect */
+    .card-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .card:hover .card-image::before {
+      left: 100%;
+    }
+
+    .card-image span {
+      font-size: 3rem;
+      color: white;
+    }
+
+    .card-content {
       padding: 1.5rem;
     }
-    a {
-      color: #0b74ff;
-      text-decoration: none;
+
+    .card-title {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
-    a:hover {
-      color: #ff6a3d;
+
+    .card-description {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
-    .back {
-      display: inline-block;
-      margin-bottom: 1rem;
+
+    /* Skills Highlights */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
-    .upload {
-      border: 2px dashed #c9c9d3;
-      border-radius: 12px;
-      padding: 1.25rem;
-      text-align: center;
-      background: #fafafe;
-    }
-    input[type=file] {
-      display: block;
-      margin: 0.75rem auto;
-    }
-    button {
-      background: #6a5acd;
-      color: #fff;
-      border: 0;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
+
+    .skill-tag {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
       cursor: pointer;
     }
-    button:hover {
-      background: linear-gradient(135deg, #6a5acd, #ff8a00);
+
+    .skill-tag:hover {
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Enhanced Navigation Bar with Dropdown Menus -->
+
+  <!-- Navigation Menu -->
   <nav>
     <ul>
-      <li><a href="../index.html">Home</a></li>
+      <!-- About Dropdown -->
       <li class="dropdown">
         <button class="dropbtn">About</button>
         <div class="dropdown-content">
           <a href="../about.html">About Me</a>
-          <a href="../about.html#intro">Intro Section</a>
-          <a href="../contact.html">Contact</a>
+          <a href="../about.html#experience">Experience</a>
+          <a href="../about.html#education">Education</a>
+          <a href="../about.html#resume">Resume</a>
         </div>
       </li>
+
+      <!-- Skills Dropdown -->
       <li class="dropdown">
         <button class="dropbtn">Skills</button>
         <div class="dropdown-content">
-          <a href="html-css-upload.html">Frontend</a>
-          <a href="backend.html">Backend</a>
-          <a href="tools.html">Tools</a>
+          <a href="html-css-upload.html">HTML & CSS</a>
+          <a href="javascript-upload.html">JavaScript</a>
+          <a href="react-upload.html">React</a>
+          <a href="python-upload.html">Python</a>
         </div>
       </li>
+
+      <!-- Projects Dropdown -->
       <li class="dropdown">
         <button class="dropbtn">Projects</button>
         <div class="dropdown-content">
           <a href="../projects.html">All Projects</a>
           <a href="../projects.html#highlights">Highlights</a>
           <a href="../projects.html#featured">Featured Work</a>
+          <a href="../projects.html#opensource">Open Source</a>
         </div>
       </li>
+
+      <!-- Gallery Dropdown -->
       <li class="dropdown">
         <button class="dropbtn">Gallery</button>
         <div class="dropdown-content">
@@ -160,28 +293,141 @@
           <a href="../gallery.html#logos">Logos</a>
         </div>
       </li>
+
+      <!-- Contact Dropdown -->
       <li class="dropdown">
         <button class="dropbtn">Contact</button>
         <div class="dropdown-content">
           <a href="../contact.html">Contact Form</a>
           <a href="../contact.html#info">Contact Info</a>
           <a href="../contact.html#social">Social Media</a>
+          <a href="../contact.html#location">Location</a>
         </div>
       </li>
     </ul>
   </nav>
-  <!-- Upload page for HTML & CSS projects -->
+
+  <!-- Main Content -->
   <main>
-    <h1>Upload Project - HTML & CSS</h1>
-    <p>Use this page to upload your HTML & CSS project files.</p>
-    <!-- Note: On GitHub Pages there is no server to receive uploads.
-         You can drag files into this repository on GitHub instead.
-         This section is a placeholder UI for future backend use. -->
-    <div class="upload">
-      <p>Demo only: File upload requires a backend/server.</p>
-      <input type="file" multiple />
-      <button type="button" onclick="alert('This is a demo UI. Use the GitHub web upload to actually add files.')">Upload</button>
-    </div>
+    <h1>HTML & CSS Skills</h1>
+    <p class="intro">
+      Explore my expertise in HTML and CSS. Below are some example projects showcasing 
+      modern web design techniques, responsive layouts, and interactive elements.
+    </p>
+
+    <!-- Demo Examples Section -->
+    <section class="examples-section">
+      <h2 class="section-title">Project Examples</h2>
+      
+      <!-- Project Cards with Image Hover Effects -->
+      <div class="cards-grid">
+        
+        <!-- Card 1: Responsive Website -->
+        <div class="card">
+          <div class="card-image">
+            <span>🌐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Responsive Website</h3>
+            <p class="card-description">
+              A fully responsive website using CSS Grid and Flexbox with mobile-first approach.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: CSS Animations -->
+        <div class="card">
+          <div class="card-image">
+            <span>✨</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">CSS Animations</h3>
+            <p class="card-description">
+              Interactive animations and transitions using pure CSS keyframes and transforms.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Landing Page -->
+        <div class="card">
+          <div class="card-image">
+            <span>🚀</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Modern Landing Page</h3>
+            <p class="card-description">
+              Clean and modern landing page with gradient backgrounds and smooth scrolling.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4: Portfolio Layout -->
+        <div class="card">
+          <div class="card-image">
+            <span>📱</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Portfolio Layout</h3>
+            <p class="card-description">
+              Professional portfolio layout with card-based design and hover effects.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 5: Navigation Menu -->
+        <div class="card">
+          <div class="card-image">
+            <span>🧭</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Dropdown Navigation</h3>
+            <p class="card-description">
+              Advanced navigation menu with multi-level dropdowns and smooth transitions.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 6: Form Design -->
+        <div class="card">
+          <div class="card-image">
+            <span>📝</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Styled Forms</h3>
+            <p class="card-description">
+              Beautiful form designs with custom styling, validation states, and accessibility.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills Highlights Section -->
+    <section class="examples-section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-list">
+        <span class="skill-tag">HTML5 Semantic Elements</span>
+        <span class="skill-tag">CSS3 Animations</span>
+        <span class="skill-tag">Flexbox Layout</span>
+        <span class="skill-tag">CSS Grid</span>
+        <span class="skill-tag">Responsive Design</span>
+        <span class="skill-tag">Mobile-First Approach</span>
+        <span class="skill-tag">CSS Variables</span>
+        <span class="skill-tag">Transitions & Transforms</span>
+        <span class="skill-tag">Media Queries</span>
+        <span class="skill-tag">Cross-Browser Compatibility</span>
+        <span class="skill-tag">Accessibility (ARIA)</span>
+        <span class="skill-tag">Modern CSS Features</span>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Portfolio. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
