@@ -15,32 +15,68 @@
       background: #f7f7fb;
     }
     /* Navigation Bar Styles */
-    nav.navbar {
-      background: linear-gradient(135deg, #6a5acd, #ff8a00);
-      padding: 1rem 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    nav {
+      background-color: #333;
+      padding: 1rem;
     }
-    nav.navbar ul {
+    nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 2rem;
     }
-    nav.navbar a {
-      color: #fff;
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a {
+      color: white;
       text-decoration: none;
-      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #4CAF50;
+    }
+    /* Dropdown Menu Styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      top: 100%;
+      left: 0;
+    }
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
       font-size: 1rem;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: background 0.3s ease;
     }
-    nav.navbar a:hover {
-      background: rgba(255, 255, 255, 0.2);
+    .dropdown-content a:hover {
+      background-color: #555;
+      color: #4CAF50;
     }
-    nav.navbar a.active {
-      background: rgba(255, 255, 255, 0.3);
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropbtn {
+      background-color: transparent;
+      color: white;
+      padding: 0;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .dropbtn:hover {
+      color: #4CAF50;
     }
     /* Main Content Styles */
     main {
@@ -87,23 +123,59 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar">
+  <!-- Enhanced Navigation Bar with Dropdown Menus -->
+  <nav>
     <ul>
       <li><a href="../index.html">Home</a></li>
-      <li><a href="../about.html">About</a></li>
-      <li><a href="python-upload.html" class="active">Skills</a></li>
-      <li><a href="../projects.html">Projects</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li class="dropdown">
+        <button class="dropbtn">About</button>
+        <div class="dropdown-content">
+          <a href="../about.html">About Me</a>
+          <a href="../about.html#intro">Intro Section</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Skills</button>
+        <div class="dropdown-content">
+          <a href="html-css-upload.html">Frontend</a>
+          <a href="backend.html">Backend</a>
+          <a href="tools.html">Tools</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Projects</button>
+        <div class="dropdown-content">
+          <a href="../projects.html">All Projects</a>
+          <a href="../projects.html#highlights">Highlights</a>
+          <a href="../projects.html#featured">Featured Work</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Gallery</button>
+        <div class="dropdown-content">
+          <a href="../gallery.html">All</a>
+          <a href="../gallery.html#web-design">Web Design</a>
+          <a href="../gallery.html#photography">Photography</a>
+          <a href="../gallery.html#logos">Logos</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Contact</button>
+        <div class="dropdown-content">
+          <a href="../contact.html">Contact Form</a>
+          <a href="../contact.html#info">Contact Info</a>
+          <a href="../contact.html#social">Social Media</a>
+        </div>
+      </li>
     </ul>
   </nav>
-
   <!-- Upload page for Python projects -->
   <main>
     <h1>Upload Project - Python</h1>
     <p>Use this page to upload your Python project files.</p>
     <div class="upload">
-      <p><strong>Demo only:</strong> File upload requires a backend/server.</p>
+      <p>Demo only: File upload requires a backend/server.</p>
       <input type="file" multiple />
       <button type="button" onclick="alert('This is a demo UI. Use the GitHub web upload to actually add files.')">Upload</button>
     </div>
