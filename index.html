@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Document metadata -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Md. Rajaul Islam | Portfolio</title>
+
   <!-- Global styles and CSS variables -->
   <style>
+    /* CSS variables for easy theming */
     :root{
       --bg:#0f1221;               /* page background */
       --card:#141938;             /* card surfaces */
@@ -19,140 +22,203 @@
       --shadow: 0 12px 40px rgba(0,0,0,.35);
       --radius: 16px;
     }
+
     *{box-sizing:border-box; margin:0; padding:0}
-    body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--text);}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
     a{color:var(--link); text-decoration:none}
     a:hover{color:var(--link-hover)}
-    /* Top menu (kept) */
+
+    /* Layout helpers */
+    .container{max-width:1200px; margin:0 auto; padding:0 1rem}
+    .section{padding: clamp(2rem, 5vw, 4rem) 0}
+    .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    /* Top navigation bar with dropdowns */
+    /* Wrapper keeps the bar sticky and glassy */
     .topbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(6px); background:rgba(10,12,26,.6); border-bottom:1px solid rgba(255,255,255,.06)}
-    .topbar .container{max-width:1200px; margin:0 auto; padding:.9rem 1rem; display:flex; align-items:center; gap:1rem}
+    .topbar .inner{display:flex; align-items:center; gap:1rem; padding:.9rem 0}
     .brand{font-weight:800; letter-spacing:.3px; color:#fff}
-    .nav{margin-left:auto; display:flex; gap:.75rem}
-    .nav a{color:#d6d9ff; padding:.5rem .8rem; border-radius:10px; transition:all .2s ease}
-    .nav a:hover{background:linear-gradient(135deg, rgba(124,58,237,.18), rgba(6,182,212,.18)); transform:translateY(-1px)}
-    /* Hero layout */
+
+    /* Primary nav list */
+    .nav{margin-left:auto; display:flex; gap:.5rem; align-items:center}
+    .nav > li{list-style:none; position:relative}
+    .nav > li > a, .nav > li > button{
+      color:#d6d9ff; padding:.5rem .8rem; border-radius:10px; transition:all .2s ease; background:none; border:0; font:inherit; cursor:pointer
+    }
+    .nav > li > a:hover, .nav > li > button:hover{
+      background:linear-gradient(135deg, rgba(124,58,237,.18), rgba(6,182,212,.18)); transform:translateY(-1px)
+    }
+
+    /* Dropdown menu */
+    .dropdown{position:absolute; top:100%; left:0; min-width:220px; padding:.5rem; display:none}
+    .dropdown.card{border:1px solid rgba(255,255,255,.06)}
+    .dropdown a{display:block; color:#dfe3ff; padding:.55rem .75rem; border-radius:10px}
+    .dropdown a:hover{background:rgba(255,255,255,.06)}
+
+    /* Show dropdown on hover/focus-within for keyboard access */
+    .nav > li:focus-within .dropdown, .nav > li:hover .dropdown{display:block}
+
+    /* Hero placeholder (kept minimal) */
     .hero{position:relative; isolation:isolate}
-    .hero .container{max-width:1200px; margin:0 auto; padding:clamp(1.25rem, 2vw, 2rem) 1rem}
-    .hero-grid{display:grid; grid-template-columns:1.25fr .9fr; gap:clamp(1.25rem, 3vw, 2.5rem); align-items:center; min-height:calc(100vh - 72px)}
-    /* Left column */
-    .eyebrow{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .6rem; border-radius:999px; background:rgba(124,58,237,.14); color:#cbb6ff; border:1px solid rgba(124,58,237,.35)}
-    .greeting{font-weight:900; font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.05; margin:.6rem 0 1rem;}
-    .greeting .name{background:linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .subtitle{font-size:clamp(1rem, 2.2vw, 1.2rem); color:var(--muted); max-width:48ch}
-    /* CTA */
-    .actions{display:flex; align-items:center; gap:.8rem; margin:1.3rem 0 1.1rem}
-    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1rem; border-radius:12px; border:1px solid rgba(255,255,255,.12); color:#fff; font-weight:600; transition:.2s ease; box-shadow:var(--ring)}
-    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2))}
-    .btn:hover{transform:translateY(-2px); filter:saturate(115%)}
-    /* Socials */
-    .socials{display:flex; gap:.55rem}
-    .socials a{width:42px; height:42px; display:grid; place-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:999px; color:#e8eaff; transition:.2s ease}
-    .socials a:hover{transform:translateY(-2px); background:linear-gradient(135deg, rgba(124,58,237,.22), rgba(6,182,212,.22))}
-    /* Right column avatar */
-    .avatar-wrap{justify-self:center}
-    .avatar{width:min(360px, 70vw); aspect-ratio:1; border-radius:999px; padding:10px; background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent)); box-shadow: var(--ring)}
-    .avatar > div{width:100%; height:100%; border-radius:inherit; overflow:hidden; display:grid; place-items:center; background:var(--card)}
-    .avatar img{width:100%; height:100%; object-fit:cover; border-radius:inherit}
-    /* Animated vector background (behind content) */
-    .bg-anim{position:absolute; inset:0; z-index:-1; overflow:hidden}
-    .orb{position:absolute; width:46vmax; height:46vmax; border-radius:50%; filter:blur(60px); opacity:.35; background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.75), transparent 60%)}
-    .orb.two{left:auto; right:-10vmax; top:10vmax; background:radial-gradient(circle at 70% 30%, rgba(6,182,212,.75), transparent 60%)}
-    @keyframes floaty { 0%{ transform:translateY(0) } 50%{ transform:translateY(-18px) } 100%{ transform:translateY(0) } }
-    .orb{animation: floaty 10s ease-in-out infinite}
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{grid-template-columns:1fr; padding-top:1.5rem; min-height:unset}
-      .avatar-wrap{order:-1}
-      .avatar{width:min(300px, 70vw)}
-      .topbar .container{padding:.75rem 1rem}
-      .nav{display:none}
+    .hero .grid{display:grid; grid-template-columns:1.25fr .9fr; gap:clamp(1.25rem, 3vw, 2.5rem); align-items:center; min-height:calc(100vh - 72px);}
+
+    /* Gallery grid styles */
+    /* Responsive grid that auto-fits tiles */
+    .gallery-grid{display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
+    .gallery-item{overflow:hidden; border-radius:14px; background:#0c1024; border:1px solid rgba(255,255,255,.06); position:relative}
+    .gallery-item img{width:100%; height:220px; object-fit:cover; display:block; transition:transform .35s ease}
+    .gallery-item:hover img{transform:scale(1.06)}
+    .gallery-caption{position:absolute; inset:auto 0 0 0; background:linear-gradient( to top, rgba(0,0,0,.55), rgba(0,0,0,0)); color:#fff; padding:.6rem .75rem; font-size:.9rem}
+
+    /* Section headings */
+    h2.section-title{font-size:clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom:1rem}
+    p.section-sub{color:var(--muted); margin-bottom:1.25rem}
+
+    /* Utility spacing below hero when sticky nav overlays */
+    .spacer{height:12px}
+
+    /* Mobile tweaks */
+    @media (max-width: 720px){
+      .hero .grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <!-- Top menu with updated links to separate pages -->
+  <!-- Top navigation with dropdowns: About, Skills, Projects, Gallery -->
   <header class="topbar">
-    <div class="container">
-      <div class="brand">Portfolio</div>
-      <nav class="nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills/html-css-upload.html">Skills</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+    <div class="container inner">
+      <a class="brand" href="#home">Md. Rajaul Islam</a>
+      <!-- Primary nav: each item exposes a dropdown for quick links -->
+      <ul class="nav" role="menubar" aria-label="Primary">
+        <li role="none">
+          <button role="menuitem" aria-haspopup="true" aria-expanded="false">About</button>
+          <!-- About dropdown: anchors to sections or pages -->
+          <div class="dropdown card" role="menu" aria-label="About menu">
+            <a href="#about">Overview</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+          </div>
+        </li>
+        <li role="none">
+          <button role="menuitem" aria-haspopup="true" aria-expanded="false">Skills</button>
+          <!-- Skills dropdown: categories/examples -->
+          <div class="dropdown card" role="menu" aria-label="Skills menu">
+            <a href="#skills">All Skills</a>
+            <a href="#skills-web">Web</a>
+            <a href="#skills-tools">Tools</a>
+          </div>
+        </li>
+        <li role="none">
+          <button role="menuitem" aria-haspopup="true" aria-expanded="false">Projects</button>
+          <!-- Projects dropdown: featured and GitHub -->
+          <div class="dropdown card" role="menu" aria-label="Projects menu">
+            <a href="#projects">Featured</a>
+            <a href="https://github.com/rejaul24cse-39" target="_blank" rel="noopener">GitHub Profile</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </li>
+        <li role="none">
+          <button role="menuitem" aria-haspopup="true" aria-expanded="false">Gallery</button>
+          <!-- Gallery dropdown: jump links -->
+          <div class="dropdown card" role="menu" aria-label="Gallery menu">
+            <a href="#gallery">All Images</a>
+            <a href="#gallery-ui">UI</a>
+            <a href="#gallery-photos">Photos</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </header>
 
-  <!-- Hero section with greeting, subtitle, CTA, socials, and avatar -->
-  <main class="hero" id="home">
-    <!-- Animated vector background -->
-    <div class="bg-anim" aria-hidden="true">
-      <span class="orb one" style="left:-12vmax; top:-6vmax"></span>
-      <span class="orb two"></span>
-    </div>
+  <main id="home">
+    <div class="spacer" aria-hidden="true"></div>
 
-    <div class="container">
-      <section class="hero-grid" aria-label="Introduction">
-        <!-- Left: Greeting content -->
-        <div>
-          <span class="eyebrow">Welcome</span>
-          <h1 class="greeting">
-            Hi, I'm <span class="name">Md. Rajaul Islam</span>
-          </h1>
-          <p class="subtitle">Web Developer crafting responsive, accessible, and performant experiences for the modern web.</p>
-          
-          <!-- Primary action and socials -->
-          <div class="actions">
-            <a href="about.html" class="btn btn-primary" aria-label="Learn more about me">About Me</a>
+    <!-- Hero section (kept minimal; expand later as needed) -->
+    <section class="hero">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <h1>Welcome to my portfolio</h1>
+            <p class="section-sub">Explore my work, skills, and recent visuals below.</p>
           </div>
-          
-          <div class="socials" aria-label="Social links">
-            <!-- Replace href values with your real profiles -->
-            <a href="https://www.linkedin.com/" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
-            <a href="https://github.com/rejaul24cse-39" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener">GH</a>
-            <a href="https://t.me/" title="Telegram" aria-label="Telegram" target="_blank" rel="noopener">TG</a>
-            <a href="https://www.instagram.com/" title="Instagram" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://dev.to/" title="Dev" aria-label="Dev" target="_blank" rel="noopener">DEV</a>
-          </div>
+          <div></div>
         </div>
-        
-        <!-- Right: Avatar circle -->
-        <div class="avatar-wrap">
-          <div class="avatar" aria-hidden="true">
-            <div>
-              <!-- Avatar image placeholder -->
-              <img src="a1614500-e03f-11eb-986a-30f6f0d4f1cc.jpg" alt="Avatar of Md. Rajaul Islam" />
-            </div>
-          </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section: 6 demo images. Replace src with your own later. -->
+    <section id="gallery" class="section">
+      <div class="container">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-sub">A snapshot of recent work and visuals. These are demo images.</p>
+
+        <!-- Responsive gallery grid with hover zoom and captions -->
+        <div class="gallery-grid">
+          <!-- Item 1 -->
+          <figure class="gallery-item" id="gallery-ui">
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1200&auto=format&fit=crop" alt="Team working at laptops" />
+            <figcaption class="gallery-caption">Collaboration</figcaption>
+          </figure>
+          <!-- Item 2 -->
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="Code editor on screen" />
+            <figcaption class="gallery-caption">Development</figcaption>
+          </figure>
+          <!-- Item 3 -->
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Desk with monitor and plant" />
+            <figcaption class="gallery-caption">Workspace</figcaption>
+          </figure>
+          <!-- Item 4 -->
+          <figure class="gallery-item" id="gallery-photos">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Mountains at sunrise" />
+            <figcaption class="gallery-caption">Landscape</figcaption>
+          </figure>
+          <!-- Item 5 -->
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop" alt="Headphones close-up" />
+            <figcaption class="gallery-caption">Audio</figcaption>
+          </figure>
+          <!-- Item 6 -->
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop" alt="Abstract gradient lights" />
+            <figcaption class="gallery-caption">Abstract</figcaption>
+          </figure>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <!-- Placeholder anchors for dropdown links (optional to fill later) -->
+    <section id="about" class="section">
+      <div class="container"><h2 class="section-title">About</h2></div>
+    </section>
+    <section id="experience" class="section">
+      <div class="container"><h2 class="section-title">Experience</h2></div>
+    </section>
+    <section id="education" class="section">
+      <div class="container"><h2 class="section-title">Education</h2></div>
+    </section>
+    <section id="skills" class="section">
+      <div class="container"><h2 class="section-title">Skills</h2></div>
+    </section>
+    <section id="skills-web" class="section">
+      <div class="container"><h2 class="section-title">Web Skills</h2></div>
+    </section>
+    <section id="skills-tools" class="section">
+      <div class="container"><h2 class="section-title">Tools</h2></div>
+    </section>
+    <section id="projects" class="section">
+      <div class="container"><h2 class="section-title">Projects</h2></div>
+    </section>
+    <section id="contact" class="section">
+      <div class="container"><h2 class="section-title">Contact</h2></div>
+    </section>
+
   </main>
-
-  <!-- Simple placeholder sections -->
-  <section id="about" style="max-width:1000px;margin:3rem auto;padding:1rem">
-    <h2 style="margin-bottom:.75rem">About</h2>
-    <p style="color:#cbd5ff">I'm a web developer who loves building fast, delightful interfaces with clean code. Visit the <a href="about.html">About page</a> for more details.</p>
-  </section>
-
-  <section id="projects" style="max-width:1000px;margin:2rem auto;padding:1rem">
-    <h2 style="margin-bottom:.75rem">Projects</h2>
-    <p style="color:#cbd5ff">Check out my <a href="projects.html">Projects page</a> to see what I've been working on.</p>
-  </section>
-
-  <section id="contact" style="max-width:1000px;margin:2rem auto;padding:1rem">
-    <h2 style="margin-bottom:.75rem">Contact</h2>
-    <p style="color:#cbd5ff">Want to get in touch? Visit my <a href="contact.html">Contact page</a>.</p>
-  </section>
-
-  <footer style="text-align:center;color:#9aa3ff;padding:2rem 1rem;border-top:1px solid rgba(255,255,255,.06)">
-    <small>© <span id="year"></span> Md. Rajaul Islam. All rights reserved.</small>
-  </footer>
-
-  <!-- Tiny JS just to update year -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
