@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Portfolio</title>
     <style>
-        /* Global Reset and Base Styles */
+        /* ===== Global Reset and Base Styles ===== */
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +15,8 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
         }
-        /* Navigation Bar Styles */
+        
+        /* ===== Navigation Bar Styles ===== */
         nav {
             background-color: #333;
             padding: 1rem;
@@ -38,10 +39,21 @@
         nav ul li a:hover {
             color: #4CAF50;
         }
-        /* Dropdown Menu Styles */
+        
+        /* ===== Dropdown Styles ===== */
         .dropdown {
             position: relative;
-            display: inline-block;
+        }
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 0;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover {
+            color: #4CAF50;
         }
         .dropdown-content {
             display: none;
@@ -58,54 +70,101 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
         .dropdown-content a:hover {
             background-color: #555;
-            color: #4CAF50;
         }
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        .dropbtn {
-            background-color: transparent;
+        
+        /* ===== Content Filter Dropdown (Page-specific interactive dropdown) ===== */
+        .filter-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .filter-button {
+            background-color: #4CAF50;
             color: white;
-            padding: 0;
-            font-size: 1.1rem;
+            padding: 12px 24px;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
-            transition: color 0.3s;
+            border-radius: 5px;
         }
-        .dropbtn:hover {
-            color: #4CAF50;
+        .filter-button:hover {
+            background-color: #45a049;
         }
-        /* Container and Content Styles */
+        .filter-menu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .filter-menu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+        .filter-menu a:hover {
+            background-color: #f1f1f1;
+        }
+        .filter-dropdown.active .filter-menu {
+            display: block;
+        }
+        
+        /* ===== Main Container ===== */
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 2rem;
         }
         h1 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        .about-content {
-            background: #f4f4f4;
-            padding: 2rem;
-            border-radius: 8px;
+            text-align: center;
             margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        /* ===== About Content Items (filterable sections) ===== */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
         .about-item {
-            margin-bottom: 1.5rem;
+            background-color: #f4f4f4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: opacity 0.3s ease;
         }
         .about-item h2 {
             color: #4CAF50;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .about-item p {
+            color: #555;
+        }
+        
+        /* ===== Hidden class for filtering ===== */
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <!-- Enhanced Navigation Bar with Dropdown Menus -->
+    <!-- ===== Navigation Bar ===== -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -113,16 +172,17 @@
                 <button class="dropbtn">About</button>
                 <div class="dropdown-content">
                     <a href="about.html">About Me</a>
-                    <a href="about.html#intro">Intro Section</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="about.html#background">Background</a>
+                    <a href="about.html#education">Education</a>
                 </div>
             </li>
             <li class="dropdown">
                 <button class="dropbtn">Skills</button>
                 <div class="dropdown-content">
-                    <a href="skills/html-css-upload.html">Frontend</a>
-                    <a href="skills/backend.html">Backend</a>
-                    <a href="skills/tools.html">Tools</a>
+                    <a href="skills/html.html">HTML</a>
+                    <a href="skills/css.html">CSS</a>
+                    <a href="skills/javascript.html">JavaScript</a>
+                    <a href="skills/python.html">Python</a>
                 </div>
             </li>
             <li class="dropdown">
@@ -152,31 +212,105 @@
             </li>
         </ul>
     </nav>
+    
+    <!-- ===== Main Content Container ===== -->
     <div class="container">
         <h1>About Me</h1>
         
+        <!-- ===== Content Filter Dropdown (shows/hides sections on this page) ===== -->
+        <div class="filter-container">
+            <div class="filter-dropdown" id="filterDropdown">
+                <button class="filter-button" id="filterButton">Filter Sections ▼</button>
+                <div class="filter-menu" id="filterMenu">
+                    <!-- data-filter="all" shows all sections -->
+                    <a data-filter="all">Show All</a>
+                    <!-- Each option filters by data-category attribute -->
+                    <a data-filter="background">Professional Background</a>
+                    <a data-filter="education">Education</a>
+                    <a data-filter="experience">Experience</a>
+                    <a data-filter="interests">Interests</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ===== About Content Sections (each has data-category for filtering) ===== -->
         <div class="about-content">
-            <div class="about-item">
+            <!-- Professional Background section -->
+            <div class="about-item" data-category="background">
                 <h2>Professional Background</h2>
                 <p>I am a passionate web developer with expertise in creating responsive and user-friendly applications. With several years of experience in the field, I have worked on various projects ranging from small business websites to large-scale web applications.</p>
             </div>
-            <div class="about-item">
+            
+            <!-- Education section -->
+            <div class="about-item" data-category="education">
                 <h2>Education</h2>
                 <p>Bachelor of Science in Computer Science<br>
-University Name - Year of Graduation</p>
+                University Name - Year of Graduation</p>
             </div>
-            <div class="about-item">
+            
+            <!-- Experience section -->
+            <div class="about-item" data-category="experience">
                 <h2>Experience</h2>
                 <p><strong>Full Stack Developer</strong> - Company Name (2020-Present)<br>
-Developing and maintaining web applications using modern technologies and frameworks.</p>
+                Developing and maintaining web applications using modern technologies and frameworks.</p>
                 <p><strong>Junior Developer</strong> - Previous Company (2018-2020)<br>
-Worked on frontend development and collaborated with design teams.</p>
+                Worked on frontend development and collaborated with design teams.</p>
             </div>
-            <div class="about-item">
+            
+            <!-- Interests section -->
+            <div class="about-item" data-category="interests">
                 <h2>Interests</h2>
                 <p>When I'm not coding, I enjoy learning about new technologies, contributing to open-source projects, and staying updated with the latest industry trends. I also love problem-solving and continuously improving my skills.</p>
             </div>
         </div>
     </div>
+    
+    <!-- ===== JavaScript for Interactive Dropdown Filtering ===== -->
+    <script>
+        // Get DOM elements
+        const filterDropdown = document.getElementById('filterDropdown');
+        const filterButton = document.getElementById('filterButton');
+        const filterMenu = document.getElementById('filterMenu');
+        const filterOptions = filterMenu.querySelectorAll('a[data-filter]');
+        const aboutItems = document.querySelectorAll('.about-item');
+        
+        // Toggle dropdown menu on button click
+        filterButton.addEventListener('click', function() {
+            filterDropdown.classList.toggle('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!filterDropdown.contains(event.target)) {
+                filterDropdown.classList.remove('active');
+            }
+        });
+        
+        // Add click event to each filter option
+        filterOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Get the selected filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Update button text to show selected filter
+                filterButton.textContent = this.textContent + ' ▼';
+                
+                // Filter the about items
+                aboutItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    // Show all items if "all" is selected, otherwise filter by category
+                    if (filterValue === 'all' || itemCategory === filterValue) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Close dropdown after selection
+                filterDropdown.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
