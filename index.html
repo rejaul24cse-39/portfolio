@@ -1,155 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Md. Rajaul Islam</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-        /* Navigation Menu */
-        nav {
-            background: #333;
-            color: #fff;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        nav ul li {
-            display: inline;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            transition: background 0.3s;
-        }
-        nav ul li a:hover {
-            background: #555;
-            border-radius: 5px;
-        }
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-        }
-        h1 {
-            margin-bottom: 0.5rem;
-            font-size: 2.5rem;
-        }
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        /* Main Content */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        section {
-            background: #fff;
-            padding: 2rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        section h2 {
-            margin-bottom: 1rem;
-            color: #333;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
-        }
-        .contact-info {
-            list-style: none;
-            padding: 0;
-        }
-        .contact-info li {
-            margin: 0.5rem 0;
-        }
-        .skills-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .skills-list li {
-            background: #667eea;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio - Md. Rajaul Islam</title>
+  <style>
+    /* ========== Global Reset & Base ========== */
+    /* Tip: Edit colors and spacing below to quickly restyle the site */
+    :root{
+      --primary:#333;
+      --primary-hover:#6a5acd; /* hover color for menu items */
+      --accent:#00bcd4;
+      --bg:#f4f4f4;
+      --text:#222;
+      --white:#fff;
+      --link:#0b74ff;
+      --link-hover:#ff6a3d;
+      --radius:10px;
+      --shadow:0 8px 24px rgba(0,0,0,.1);
+    }
+    *{margin:0; padding:0; box-sizing:border-box}
+    body{font-family:Arial, Helvetica, sans-serif; line-height:1.6; background:var(--bg); color:var(--text)}
+    a{color:var(--link); text-decoration:none}
+    a:hover{color:var(--link-hover)}
+
+    /* ========== Header / Navigation ========== */
+    nav{
+      background:var(--primary);
+      color:var(--white);
+      position:sticky; top:0; z-index:1000;
+      box-shadow:var(--shadow);
+    }
+    .menu{display:flex; align-items:center; justify-content:center; gap:2rem; padding:1rem 1.25rem; list-style:none}
+    .menu > li{position:relative}
+    .menu > li > a, .menu > li > button{
+      color:var(--white);
+      padding:.6rem .9rem;
+      border-radius:8px;
+      transition:all .25s ease;
+      background:transparent; border:0; font:inherit; cursor:pointer;
+    }
+    /* Attractive hover for every top-level menu item */
+    .menu > li > a:hover, .menu > li > button:hover{
+      background:linear-gradient(135deg, var(--primary-hover), #ff8a00);
+      transform:translateY(-2px);
+      box-shadow:0 10px 18px rgba(0,0,0,.15);
+    }
+
+    /* ========== Dropdown ========== */
+    /* Dropdown container */
+    .dropdown{position:relative}
+    /* Hidden by default */
+    .dropdown-menu{
+      position:absolute; top:110%; left:0; min-width:220px;
+      background:var(--white); color:var(--text);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:.5rem; display:none;
+    }
+    .dropdown-menu a{
+      display:block; padding:.6rem .75rem; border-radius:8px; color:var(--text);
+    }
+    .dropdown-menu a:hover{background:linear-gradient(135deg, #ffecd2, #fcb69f); color:#000}
+    /* Show dropdown on hover */
+    .dropdown:hover .dropdown-menu{display:block}
+
+    /* ========== Layout Blocks ========== */
+    header{padding:2.5rem 1rem; text-align:center; background:linear-gradient(120deg,#e0f7fa,#fff)}
+    header h1{font-size:2rem; margin-bottom:.5rem}
+    header p{color:#555}
+    section{max-width:1100px; margin:2rem auto; padding:0 1rem}
+    .card{background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); padding:1.25rem}
+
+    /* ========== Gallery ========== */
+    .gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem}
+    .gallery img{width:100%; height:180px; object-fit:cover; border-radius:12px; transition:transform .25s ease, box-shadow .25s ease}
+    .gallery img:hover{transform:scale(1.03); box-shadow:0 12px 24px rgba(0,0,0,.15)}
+
+    /* ========== Skills ========== */
+    .skills{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem}
+    .skill{padding:1rem; border:1px solid #eee; border-radius:12px; background:#fff}
+    .skill a{display:inline-block; margin-top:.5rem; font-weight:600}
+
+    /* ========== Footer ========== */
+    footer{margin-top:3rem; text-align:center; padding:1rem; color:#666}
+  </style>
 </head>
 <body>
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation bar with one dropdown (3 options) -->
+  <nav>
+    <ul class="menu">
+      <li><a href="#home" title="Go Home">Home</a></li>
+      <li class="dropdown">
+        <!-- Dropdown trigger -->
+        <button aria-haspopup="true" aria-expanded="false" title="Open more options">More</button>
+        <!-- Dropdown menu with 3 options -->
+        <div class="dropdown-menu" role="menu">
+          <a href="#about" role="menuitem">About Me</a>
+          <a href="#gallery" role="menuitem">Gallery</a>
+          <a href="#contact" role="menuitem">Contact</a>
+        </div>
+      </li>
+      <li><a href="#skills" title="See my skills">Skills</a></li>
+      <li><a href="#projects" title="See projects">Projects</a></li>
+    </ul>
+  </nav>
 
-    <!-- Header -->
-    <header id="home">
-        <h1>Md. Rajaul Islam</h1>
-        <p class="tagline">Web Developer & Designer</p>
-    </header>
+  <header id="home">
+    <h1>Md. Rajaul Islam</h1>
+    <p>Welcome to my portfolio. Explore my work, skills, and projects.</p>
+  </header>
 
-    <div class="container">
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Welcome to my portfolio! I'm a passionate developer with experience in creating web applications and beautiful user interfaces.</p>
-        </section>
+  <!-- About -->
+  <section id="about" class="card">
+    <h2>About Me</h2>
+    <p>I am a passionate developer focusing on building modern, accessible web experiences.</p>
+  </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery">
-            <h2>Gallery</h2>
-            <p>Here you can showcase your projects, images, or work samples. This section can be customized to display your portfolio items.</p>
-        </section>
-
-        <!-- Skills Section -->
-        <section>
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>HTML & CSS</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Node.js</li>
-            </ul>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Contact</h2>
-            <ul class="contact-info">
-                <li>Email: your.email@example.com</li>
-                <li>GitHub: github.com/rejaul24cse-39</li>
-                <li>LinkedIn: linkedin.com/in/yourprofile</li>
-            </ul>
-        </section>
+  <!-- Gallery with demo images -->
+  <section id="gallery" class="card">
+    <h2>Gallery</h2>
+    <p>Some demo pictures (replace image URLs later as needed).</p>
+    <div class="gallery">
+      <!-- Demo images from Unsplash (free to use). Replace with your own later. -->
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Coding setup" />
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="Circuit board" />
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Laptop with code" />
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Developer workspace" />
     </div>
+  </section>
+
+  <!-- Skills: each links to its own upload page -->
+  <section id="skills" class="card">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <h3>HTML & CSS</h3>
+        <!-- Link to dedicated upload page for this skill -->
+        <a href="skills/html-css-upload.html">Upload project for HTML & CSS</a>
+      </div>
+      <div class="skill">
+        <h3>JavaScript</h3>
+        <a href="skills/javascript-upload.html">Upload project for JavaScript</a>
+      </div>
+      <div class="skill">
+        <h3>React</h3>
+        <a href="skills/react-upload.html">Upload project for React</a>
+      </div>
+      <div class="skill">
+        <h3>Python</h3>
+        <a href="skills/python-upload.html">Upload project for Python</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects placeholder -->
+  <section id="projects" class="card">
+    <h2>Projects</h2>
+    <p>Project listing coming soon.</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="card">
+    <h2>Contact</h2>
+    <p>Email: your.email@example.com</p>
+  </section>
+
+  <footer>
+    <small>&copy; <span id="year"></span> Md. Rajaul Islam. All rights reserved.</small>
+  </footer>
+
+  <script>
+    // Update year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
