@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Portfolio</title>
     <style>
+        /* Global Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -14,6 +15,7 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
         }
+        /* Navigation Bar Styles */
         nav {
             background-color: #333;
             padding: 1rem;
@@ -24,6 +26,9 @@
             justify-content: center;
             gap: 2rem;
         }
+        nav ul li {
+            position: relative;
+        }
         nav ul li a {
             color: white;
             text-decoration: none;
@@ -33,6 +38,48 @@
         nav ul li a:hover {
             color: #4CAF50;
         }
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #444;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1rem;
+        }
+        .dropdown-content a:hover {
+            background-color: #555;
+            color: #4CAF50;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 0;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .dropbtn:hover {
+            color: #4CAF50;
+        }
+        /* Container and Content Styles */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -58,16 +105,53 @@
     </style>
 </head>
 <body>
+    <!-- Enhanced Navigation Bar with Dropdown Menus -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="skills/html-css-upload.html">Skills</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="about.html">About Me</a>
+                    <a href="about.html#intro">Intro Section</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn">Skills</button>
+                <div class="dropdown-content">
+                    <a href="skills/html-css-upload.html">Frontend</a>
+                    <a href="skills/backend.html">Backend</a>
+                    <a href="skills/tools.html">Tools</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn">Projects</button>
+                <div class="dropdown-content">
+                    <a href="projects.html">All Projects</a>
+                    <a href="projects.html#highlights">Highlights</a>
+                    <a href="projects.html#featured">Featured Work</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn">Gallery</button>
+                <div class="dropdown-content">
+                    <a href="gallery.html">All</a>
+                    <a href="gallery.html#web-design">Web Design</a>
+                    <a href="gallery.html#photography">Photography</a>
+                    <a href="gallery.html#logos">Logos</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn">Contact</button>
+                <div class="dropdown-content">
+                    <a href="contact.html">Contact Form</a>
+                    <a href="contact.html#info">Contact Info</a>
+                    <a href="contact.html#social">Social Media</a>
+                </div>
+            </li>
         </ul>
     </nav>
-
     <div class="container">
         <h1>About Me</h1>
         
@@ -76,13 +160,11 @@
                 <h2>Professional Background</h2>
                 <p>I am a passionate web developer with expertise in creating responsive and user-friendly applications. With several years of experience in the field, I have worked on various projects ranging from small business websites to large-scale web applications.</p>
             </div>
-
             <div class="about-item">
                 <h2>Education</h2>
                 <p>Bachelor of Science in Computer Science<br>
 University Name - Year of Graduation</p>
             </div>
-
             <div class="about-item">
                 <h2>Experience</h2>
                 <p><strong>Full Stack Developer</strong> - Company Name (2020-Present)<br>
@@ -90,7 +172,6 @@ Developing and maintaining web applications using modern technologies and framew
                 <p><strong>Junior Developer</strong> - Previous Company (2018-2020)<br>
 Worked on frontend development and collaborated with design teams.</p>
             </div>
-
             <div class="about-item">
                 <h2>Interests</h2>
                 <p>When I'm not coding, I enjoy learning about new technologies, contributing to open-source projects, and staying updated with the latest industry trends. I also love problem-solving and continuously improving my skills.</p>
