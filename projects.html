@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        nav {
+            background-color: #333;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .project-card h2 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+        .project-card h3 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .project-card p {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .tech-tag {
+            background: #e0e0e0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .project-link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .project-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills/html-css-upload.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>My Projects</h1>
+        <p>Here are some of the projects I've worked on recently. Each project showcases different skills and technologies.</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <h2>E-Commerce Platform</h2>
+                <h3>Full Stack Web Application</h3>
+                <p>A comprehensive e-commerce platform with user authentication, product management, shopping cart, and payment integration.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Express</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Weather Dashboard</h2>
+                <h3>React Application</h3>
+                <p>A responsive weather application that provides real-time weather data, forecasts, and location-based weather information.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">API Integration</span>
+                    <span class="tech-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Task Management System</h2>
+                <h3>MERN Stack Application</h3>
+                <p>A collaborative task management tool with team features, deadlines, priorities, and real-time updates.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Portfolio Website</h2>
+                <h3>Static Website</h3>
+                <p>A personal portfolio website showcasing projects, skills, and professional experience with a modern design.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Social Media Dashboard</h2>
+                <h3>Python & Flask Application</h3>
+                <p>An analytics dashboard for tracking social media metrics across multiple platforms with data visualization.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Chart.js</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Blog Platform</h2>
+                <h3>Content Management System</h3>
+                <p>A fully-featured blog platform with markdown support, comments, categories, and user management.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
