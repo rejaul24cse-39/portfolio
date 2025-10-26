@@ -4,155 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Md. Rajaul Islam | Portfolio</title>
-  <!-- Global styles and CSS variables -->
+  <!-- Styles: variables, layout, dropdowns, and gallery -->
   <style>
-    :root{
-      --bg:#0f1221;               /* page background */
-      --card:#141938;             /* card surfaces */
-      --text:#e6e9ff;             /* base text */
-      --muted:#b8c0ff;            /* muted text */
-      --accent:#7c3aed;           /* primary accent (violet) */
-      --accent-2:#06b6d4;         /* secondary accent (cyan) */
-      --link:#8b5cf6;             /* link color */
-      --link-hover:#22d3ee;       /* link hover */
-      --ring: 0 10px 30px rgba(124,58,237,.35);
-      --shadow: 0 12px 40px rgba(0,0,0,.35);
-      --radius: 16px;
-    }
-    *{box-sizing:border-box; margin:0; padding:0}
-    body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--text);}
-    a{color:var(--link); text-decoration:none}
-    a:hover{color:var(--link-hover)}
-    /* Top menu (kept) */
-    .topbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(6px); background:rgba(10,12,26,.6); border-bottom:1px solid rgba(255,255,255,.06)}
-    .topbar .container{max-width:1200px; margin:0 auto; padding:.9rem 1rem; display:flex; align-items:center; gap:1rem}
-    .brand{font-weight:800; letter-spacing:.3px; color:#fff}
-    .nav{margin-left:auto; display:flex; gap:.75rem}
-    .nav a{color:#d6d9ff; padding:.5rem .8rem; border-radius:10px; transition:all .2s ease}
-    .nav a:hover{background:linear-gradient(135deg, rgba(124,58,237,.18), rgba(6,182,212,.18)); transform:translateY(-1px)}
-    /* Hero layout */
-    .hero{position:relative; isolation:isolate}
-    .hero .container{max-width:1200px; margin:0 auto; padding:clamp(1.25rem, 2vw, 2rem) 1rem}
-    .hero-grid{display:grid; grid-template-columns:1.25fr .9fr; gap:clamp(1.25rem, 3vw, 2.5rem); align-items:center; min-height:calc(100vh - 72px)}
-    /* Left column */
-    .eyebrow{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .6rem; border-radius:999px; background:rgba(124,58,237,.14); color:#cbb6ff; border:1px solid rgba(124,58,237,.35)}
-    .greeting{font-weight:900; font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.05; margin:.6rem 0 1rem;}
-    .greeting .name{background:linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .subtitle{font-size:clamp(1rem, 2.2vw, 1.2rem); color:var(--muted); max-width:48ch}
-    /* CTA */
-    .actions{display:flex; align-items:center; gap:.8rem; margin:1.3rem 0 1.1rem}
-    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1rem; border-radius:12px; border:1px solid rgba(255,255,255,.12); color:#fff; font-weight:600; transition:.2s ease; box-shadow:var(--ring)}
-    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2))}
-    .btn:hover{transform:translateY(-2px); filter:saturate(115%)}
-    /* Socials */
-    .socials{display:flex; gap:.55rem}
-    .socials a{width:42px; height:42px; display:grid; place-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:999px; color:#e8eaff; transition:.2s ease}
-    .socials a:hover{transform:translateY(-2px); background:linear-gradient(135deg, rgba(124,58,237,.22), rgba(6,182,212,.22))}
-    /* Right column avatar */
+    :root{--bg:#0f1221;--card:#141938;--text:#e6e9ff;--muted:#b8c0ff;--accent:#7c3aed;--accent-2:#06b6d4;--link:#8b5cf6;--link-hover:#22d3ee;--ring:0 10px 30px rgba(124,58,237,.35);--shadow:0 12px 40px rgba(0,0,0,.35);--radius:16px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:var(--link);text-decoration:none} a:hover{color:var(--link-hover)}
+    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(6px);background:rgba(10,12,26,.6);border-bottom:1px solid rgba(255,255,255,.06)}
+    .topbar .container{max-width:1200px;margin:0 auto;padding:.9rem 1rem;display:flex;align-items:center;gap:1rem}
+    .brand{font-weight:800;letter-spacing:.3px;color:#fff}
+    /* Dropdown navigation */
+    .nav{margin-left:auto;display:flex;gap:.75rem}
+    .nav a{color:#d6d9ff;padding:.5rem .8rem;border-radius:10px;transition:.2s;display:inline-block}
+    .nav a:hover{background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(6,182,212,.18));transform:translateY(-1px)}
+    .menu-item{position:relative}
+    .dropdown-toggle{cursor:pointer}
+    .dropdown{position:absolute;top:100%;left:0;min-width:180px;background:rgba(20,25,56,.98);border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:var(--shadow);padding:.45rem;display:none}
+    .dropdown a{display:block;padding:.52rem .6rem;border-radius:8px}
+    .dropdown a:hover{background:rgba(255,255,255,.06)}
+    .menu-item:hover .dropdown,.menu-item:focus-within .dropdown,.menu-item.open .dropdown{display:block}
+    /* Hero */
+    .hero{position:relative;isolation:isolate}
+    .hero .container{max-width:1200px;margin:0 auto;padding:clamp(1.25rem,2vw,2rem) 1rem}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(1.25rem,3vw,2.5rem);align-items:center;min-height:calc(100vh - 72px)}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:999px;background:rgba(124,58,237,.14);color:#cbb6ff;border:1px solid rgba(124,58,237,.35)}
+    .greeting{font-weight:900;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 1rem}
+    .greeting .name{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .subtitle{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--muted);max-width:48ch}
+    .actions{display:flex;align-items:center;gap:.8rem;margin:1.3rem 0 1.1rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1rem;border-radius:12px;border:1px solid rgba(255,255,255,.12);color:#fff;font-weight:600;transition:.2s;box-shadow:var(--ring)}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+    .socials{display:flex;gap:.55rem}
+    .socials a{width:42px;height:42px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#e8eaff;transition:.2s}
+    .socials a:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(124,58,237,.22),rgba(6,182,212,.22))}
     .avatar-wrap{justify-self:center}
-    .avatar{width:min(360px, 70vw); aspect-ratio:1; border-radius:999px; padding:10px; background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent)); box-shadow: var(--ring)}
-    .avatar > div{width:100%; height:100%; border-radius:inherit; overflow:hidden; display:grid; place-items:center; background:var(--card)}
-    .avatar img{width:100%; height:100%; object-fit:cover; border-radius:inherit}
-    /* Animated vector background (behind content) */
-    .bg-anim{position:absolute; inset:0; z-index:-1; overflow:hidden}
-    .orb{position:absolute; width:46vmax; height:46vmax; border-radius:50%; filter:blur(60px); opacity:.35; background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.75), transparent 60%)}
-    .orb.two{left:auto; right:-10vmax; top:10vmax; background:radial-gradient(circle at 70% 30%, rgba(6,182,212,.75), transparent 60%)}
-    @keyframes floaty { 0%{ transform:translateY(0) } 50%{ transform:translateY(-18px) } 100%{ transform:translateY(0) } }
-    .orb{animation: floaty 10s ease-in-out infinite}
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{grid-template-columns:1fr; padding-top:1.5rem; min-height:unset}
-      .avatar-wrap{order:-1}
-      .avatar{width:min(300px, 70vw)}
-      .topbar .container{padding:.75rem 1rem}
-      .nav{display:none}
-    }
+    .avatar{width:min(360px,70vw);aspect-ratio:1;border-radius:999px;padding:10px;background:conic-gradient(from 0deg,var(--accent),var(--accent-2),var(--accent));box-shadow:var(--ring)}
+    .avatar>div{width:100%;height:100%;border-radius:inherit;overflow:hidden;display:grid;place-items:center;background:var(--card)}
+    .avatar img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+    .bg-anim{position:absolute;inset:0;z-index:-1;overflow:hidden}
+    .orb{position:absolute;width:46vmax;height:46vmax;border-radius:50%;filter:blur(60px);opacity:.35;background:radial-gradient(circle at 30% 30%,rgba(124,58,237,.75),transparent 60%);animation:floaty 10s ease-in-out infinite}
+    .orb.two{left:auto;right:-10vmax;top:10vmax;background:radial-gradient(circle at 70% 30%,rgba(6,182,212,.75),transparent 60%)}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+    /* Sections */
+    section.page{max-width:1000px;margin:2.5rem auto;padding:1rem}
+    section.page h2{margin-bottom:.75rem}
+    section.page p{color:#cbd5ff}
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .gallery figure{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden}
+    .gallery img{width:100%;height:180px;object-fit:cover;display:block}
+    .gallery figcaption{font-size:.9rem;color:#cbd5ff;padding:.5rem .65rem}
+    @media (max-width:920px){.hero-grid{grid-template-columns:1fr;padding-top:1.5rem;min-height:unset}.avatar-wrap{order:-1}.avatar{width:min(300px,70vw)}.topbar .container{padding:.75rem 1rem}}
   </style>
 </head>
 <body>
-  <!-- Top menu with updated links to separate pages -->
+  <!-- Header with dropdown navigation (About, Skills, Projects, Gallery) -->
   <header class="topbar">
     <div class="container">
       <div class="brand">Portfolio</div>
-      <nav class="nav" aria-label="Primary">
+      <nav aria-label="Primary" class="nav">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills/html-css-upload.html">Skills</a>
-        <a href="projects.html">Projects</a>
+        <div class="menu-item">
+          <a class="dropdown-toggle" href="about.html" aria-haspopup="true" aria-expanded="false">About ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="about.html" role="menuitem">About Page</a>
+            <a href="#about" role="menuitem">About (this page)</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a class="dropdown-toggle" href="skills/html-css-upload.html" aria-haspopup="true" aria-expanded="false">Skills ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="skills/html-css-upload.html" role="menuitem">Skills Page</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a class="dropdown-toggle" href="projects.html" aria-haspopup="true" aria-expanded="false">Projects ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="projects.html" role="menuitem">Projects Page</a>
+            <a href="#projects" role="menuitem">Projects (this page)</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a class="dropdown-toggle" href="gallery.html" aria-haspopup="true" aria-expanded="false">Gallery ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="gallery.html" role="menuitem">Gallery Page</a>
+            <a href="#gallery" role="menuitem">Gallery (this page)</a>
+          </div>
+        </div>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero section with greeting, subtitle, CTA, socials, and avatar -->
+  <!-- Hero section -->
   <main class="hero" id="home">
-    <!-- Animated vector background -->
-    <div class="bg-anim" aria-hidden="true">
+    <div aria-hidden="true" class="bg-anim">
       <span class="orb one" style="left:-12vmax; top:-6vmax"></span>
       <span class="orb two"></span>
     </div>
-
     <div class="container">
-      <section class="hero-grid" aria-label="Introduction">
-        <!-- Left: Greeting content -->
+      <section aria-label="Introduction" class="hero-grid">
         <div>
           <span class="eyebrow">Welcome</span>
-          <h1 class="greeting">
-            Hi, I'm <span class="name">Md. Rajaul Islam</span>
-          </h1>
+          <h1 class="greeting">Hi, I'm <span class="name">Md. Rajaul Islam</span></h1>
           <p class="subtitle">Web Developer crafting responsive, accessible, and performant experiences for the modern web.</p>
-          
-          <!-- Primary action and socials -->
-          <div class="actions">
-            <a href="about.html" class="btn btn-primary" aria-label="Learn more about me">About Me</a>
-          </div>
-          
-          <div class="socials" aria-label="Social links">
-            <!-- Replace href values with your real profiles -->
-            <a href="https://www.linkedin.com/" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
-            <a href="https://github.com/rejaul24cse-39" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener">GH</a>
-            <a href="https://t.me/" title="Telegram" aria-label="Telegram" target="_blank" rel="noopener">TG</a>
-            <a href="https://www.instagram.com/" title="Instagram" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://dev.to/" title="Dev" aria-label="Dev" target="_blank" rel="noopener">DEV</a>
+          <div class="actions"><a class="btn btn-primary" href="about.html">About Me</a></div>
+          <div aria-label="Social links" class="socials">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/" target="_blank" rel="noopener">in</a>
+            <a aria-label="GitHub" href="https://github.com/rejaul24cse-39" target="_blank" rel="noopener">GH</a>
+            <a aria-label="Telegram" href="https://t.me/" target="_blank" rel="noopener">TG</a>
+            <a aria-label="Instagram" href="https://www.instagram.com/" target="_blank" rel="noopener">IG</a>
+            <a aria-label="Dev" href="https://dev.to/" target="_blank" rel="noopener">DEV</a>
           </div>
         </div>
-        
-        <!-- Right: Avatar circle -->
-        <div class="avatar-wrap">
-          <div class="avatar" aria-hidden="true">
-            <div>
-              <!-- Avatar image placeholder -->
-              <img src="a1614500-e03f-11eb-986a-30f6f0d4f1cc.jpg" alt="Avatar of Md. Rajaul Islam" />
-            </div>
-          </div>
-        </div>
+        <div class="avatar-wrap"><div aria-hidden="true" class="avatar"><div><img alt="Avatar of Md. Rajaul Islam" /></div></div></div>
       </section>
     </div>
   </main>
 
-  <!-- Simple placeholder sections -->
-  <section id="about" style="max-width:1000px;margin:3rem auto;padding:1rem">
-    <h2 style="margin-bottom:.75rem">About</h2>
-    <p style="color:#cbd5ff">I'm a web developer who loves building fast, delightful interfaces with clean code. Visit the <a href="about.html">About page</a> for more details.</p>
+  <!-- About section -->
+  <section id="about" class="page">
+    <h2>About</h2>
+    <p>I'm a web developer who loves building fast, delightful interfaces with clean code. Visit the <a href="about.html">About page</a> for more details.</p>
   </section>
 
-  <section id="projects" style="max-width:1000px;margin:2rem auto;padding:1rem">
-    <h2 style="margin-bottom:.75rem">Projects</h2>
-    <p style="color:#cbd5ff">Check out my <a href="projects.html">Projects page</a> to see what I've been working on.</p>
+  <!-- Projects section -->
+  <section id="projects" class="page">
+    <h2>Projects</h2>
+    <p>Check out my <a href="projects.html">Projects page</a> to see what I've been working on.</p>
   </section>
 
-  <section id="contact" style="max-width:1000px;margin:2rem auto;padding:1rem">
-    <h2 style="margin-bottom:.75rem">Contact</h2>
-    <p style="color:#cbd5ff">Want to get in touch? Visit my <a href="contact.html">Contact page</a>.</p>
+  <!-- NEW: Gallery section on Home page with 6 demo images -->
+  <section id="gallery" class="page">
+    <h2>Gallery</h2>
+    <p>Preview of my work and inspirations. Visit the <a href="gallery.html">Gallery page</a> for more.</p>
+    <div class="gallery">
+      <figure><img src="https://picsum.photos/seed/ri-1/600/400" alt="Demo image 1" /><figcaption>Demo image 1</figcaption></figure>
+      <figure><img src="https://picsum.photos/seed/ri-2/600/400" alt="Demo image 2" /><figcaption>Demo image 2</figcaption></figure>
+      <figure><img src="https://picsum.photos/seed/ri-3/600/400" alt="Demo image 3" /><figcaption>Demo image 3</figcaption></figure>
+      <figure><img src="https://picsum.photos/seed/ri-4/600/400" alt="Demo image 4" /><figcaption>Demo image 4</figcaption></figure>
+      <figure><img src="https://picsum.photos/seed/ri-5/600/400" alt="Demo image 5" /><figcaption>Demo image 5</figcaption></figure>
+      <figure><img src="https://picsum.photos/seed/ri-6/600/400" alt="Demo image 6" /><figcaption>Demo image 6</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section id="contact" class="page">
+    <h2>Contact</h2>
+    <p>Want to get in touch? Visit my <a href="contact.html">Contact page</a>.</p>
   </section>
 
   <footer style="text-align:center;color:#9aa3ff;padding:2rem 1rem;border-top:1px solid rgba(255,255,255,.06)">
     <small>© <span id="year"></span> Md. Rajaul Islam. All rights reserved.</small>
   </footer>
 
-  <!-- Tiny JS just to update year -->
   <script>
+    // Update year text
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Touch/click dropdown behavior
+    document.querySelectorAll('.dropdown-toggle').forEach((toggle)=>{
+      toggle.addEventListener('click',(e)=>{
+        e.preventDefault();
+        const item = toggle.closest('.menu-item');
+        const open = item.classList.toggle('open');
+        if(open){
+          document.querySelectorAll('.menu-item').forEach(mi=>{ if(mi!==item) mi.classList.remove('open'); });
+        }
+      });
+    });
+    // Close dropdowns when clicking outside
+    document.addEventListener('click',(e)=>{
+      if(!e.target.closest('.menu-item')){
+        document.querySelectorAll('.menu-item').forEach(mi=>mi.classList.remove('open'));
+      }
+    });
   </script>
 </body>
 </html>
