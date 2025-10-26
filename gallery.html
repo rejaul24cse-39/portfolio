@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Portfolio</title>
+  <!-- Page-specific styles. You can move these to your main CSS if preferred. -->
+  <style>
+    /* ====== Base Reset ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #222; background: #f7f9fc; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ====== Enhanced Navbar (Matches other pages; editable) ======
+       To adjust links or dropdown items, edit the <nav> structure in the body.
+       To change colors, update the CSS variables below. */
+    :root {
+      --nav-bg: #0f172a;         /* Navbar background */
+      --nav-text: #e2e8f0;       /* Navbar text */
+      --nav-hover: #38bdf8;      /* Hover/active color */
+      --accent: #2563eb;         /* Accent color for tabs */
+      --tab-bg: #ffffff;         /* Tab background */
+      --tab-border: #e5e7eb;     /* Tab border */
+    }
+
+    .navbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+    .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+    .brand { font-weight: 700; letter-spacing: 0.4px; font-size: 1.05rem; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-item { position: relative; }
+    .nav-link { padding: 8px 4px; display: inline-block; opacity: 0.95; }
+    .nav-link:hover, .nav-link:focus { color: var(--nav-hover); }
+
+    /* Dropdown */
+    .dropdown-toggle::after { content: '▾'; margin-left: 6px; font-size: .8em; }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 180px; background: #0b1222; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px; display: none; box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
+    .dropdown-item { display: block; padding: 8px 10px; border-radius: 6px; color: #e5e7eb; white-space: nowrap; }
+    .dropdown-item:hover { background: rgba(255,255,255,0.06); color: var(--nav-hover); }
+    .nav-item:focus-within .dropdown-menu, .nav-item:hover .dropdown-menu { display: block; }
+
+    /* ====== Page Header ====== */
+    .hero { max-width: 1100px; margin: 32px auto 20px; padding: 0 20px; }
+    .hero h1 { margin: 0 0 8px; font-size: 2.2rem; color: #0f172a; }
+    .hero p { margin: 0; color: #475569; }
+
+    /* ====== Category Tabs (Demo) ====== */
+    .tabs { max-width: 1100px; margin: 16px auto 0; padding: 0 20px; }
+    .tab-list { display: flex; flex-wrap: wrap; gap: 10px; background: transparent; padding: 0; list-style: none; }
+    .tab-btn { border: 1px solid var(--tab-border); background: var(--tab-bg); color: #0f172a; padding: 8px 14px; border-radius: 999px; cursor: pointer; transition: all .2s ease; }
+    .tab-btn.active, .tab-btn:hover { border-color: var(--accent); color: #fff; background: var(--accent); }
+
+    /* ====== Gallery Grid ====== */
+    .section { max-width: 1100px; margin: 18px auto 36px; padding: 0 20px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+    .card { position: relative; overflow: hidden; border-radius: 12px; background: #0f172a; }
+    .card img { width: 100%; height: 200px; object-fit: cover; display: block; filter: saturate(0.92); transition: transform .35s ease, filter .35s ease; }
+
+    /* Hover effects */
+    .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,0) 40%, rgba(15,23,42,0.65) 100%); opacity: 0; transition: opacity .35s ease; }
+    .card:hover img { transform: scale(1.06); filter: saturate(1.15); }
+    .card:hover::after { opacity: 1; }
+    .card-caption { position: absolute; left: 12px; bottom: 10px; color: #e2e8f0; font-size: .9rem; letter-spacing: .3px; opacity: 0; transform: translateY(6px); transition: .3s ease; }
+    .card:hover .card-caption { opacity: 1; transform: translateY(0); }
+
+    /* Utility */
+    .hidden { display: none !important; }
+    .muted { color: #6b7280; font-size: .95rem; }
+
+    /* Footer (optional) */
+    footer { max-width: 1100px; margin: 40px auto; padding: 0 20px 40px; color: #64748b; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <!-- ====== Navbar START ======
+       Copy the same structure you use on other pages. This demo includes
+       common links and 2 dropdowns. Update hrefs to match your site routes. -->
+  <header class="navbar" role="banner">
+    <div class="nav-container">
+      <a class="brand" href="index.html">My Portfolio</a>
+      <nav class="nav-links" aria-label="Primary">
+        <div class="nav-item"><a class="nav-link" href="index.html">Home</a></div>
+        <div class="nav-item"><a class="nav-link" href="about.html">About</a></div>
+        <div class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="services.html#web-design">Web Design</a>
+            <a class="dropdown-item" href="services.html#ui-ux">UI/UX</a>
+            <a class="dropdown-item" href="services.html#branding">Branding</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="gallery.html">Gallery</a>
+            <a class="dropdown-item" href="projects.html">Projects</a>
+            <a class="dropdown-item" href="contact.html">Contact</a>
+          </div>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="contact.html">Contact</a></div>
+      </nav>
+    </div>
+  </header>
+  <!-- ====== Navbar END ====== -->
+
+  <main>
+    <!-- Page Intro -->
+    <section class="hero">
+      <h1>Gallery</h1>
+      <p class="muted">Explore sample works by category. Replace demo images with your own.</p>
+    </section>
+
+    <!-- Category Tabs (Demo UI only; JS toggles visibility) -->
+    <section class="tabs" aria-label="Gallery Categories">
+      <!-- To add/remove categories, edit buttons and matching section IDs below. -->
+      <ul class="tab-list" role="tablist">
+        <li><button class="tab-btn active" role="tab" aria-selected="true" data-target="#web-design">Web Design</button></li>
+        <li><button class="tab-btn" role="tab" aria-selected="false" data-target="#photography">Photography</button></li>
+        <li><button class="tab-btn" role="tab" aria-selected="false" data-target="#logos">Logos</button></li>
+        <li><button class="tab-btn" role="tab" aria-selected="false" data-target="#art">Art</button></li>
+      </ul>
+    </section>
+
+    <!-- Web Design -->
+    <section id="web-design" class="section">
+      <div class="grid">
+        <!-- Replace src with your images. Keep alt descriptive for accessibility. -->
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="Responsive website layout on laptop" />
+          <figcaption class="card-caption">Responsive Layout</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?q=80&w=1200&auto=format&fit=crop" alt="Team working on wireframes and UI" />
+          <figcaption class="card-caption">Wireframes & UI</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Photography -->
+    <section id="photography" class="section hidden">
+      <div class="grid">
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Mountain landscape at sunrise" />
+          <figcaption class="card-caption">Sunrise Peaks</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" alt="City street at night with neon lights" />
+          <figcaption class="card-caption">Neon Streets</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Logos -->
+    <section id="logos" class="section hidden">
+      <div class="grid">
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1200&auto=format&fit=crop" alt="Minimal geometric logo on blue background" />
+          <figcaption class="card-caption">Minimal Mark</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=1200&auto=format&fit=crop" alt="Bold monogram logo concept" />
+          <figcaption class="card-caption">Monogram Concept</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Art -->
+    <section id="art" class="section hidden">
+      <div class="grid">
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?q=80&w=1200&auto=format&fit=crop" alt="Abstract paint strokes on canvas" />
+          <figcaption class="card-caption">Abstract Canvas</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?q=80&w=1200&auto=format&fit=crop" alt="Sculpture silhouette with dramatic lighting" />
+          <figcaption class="card-caption">Sculpted Light</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== Simple JS for Tabs (No external dependencies) ======
+       If you remove categories, also remove handlers below. -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const buttons = document.querySelectorAll('.tab-btn');
+      const sections = {
+        '#web-design': document.querySelector('#web-design'),
+        '#photography': document.querySelector('#photography'),
+        '#logos': document.querySelector('#logos'),
+        '#art': document.querySelector('#art')
+      };
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // Toggle sections
+          const target = btn.getAttribute('data-target');
+          Object.keys(sections).forEach(key => {
+            if (key === target) sections[key].classList.remove('hidden');
+            else sections[key].classList.add('hidden');
+          });
+
+          // Optional: Scroll to top of gallery on tab change
+          document.querySelector('.tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    });
+  </script>
+
+  <footer>
+    <!-- Edit this footer content to match your site's footer -->
+    © <span id="year"></span> Your Name. All rights reserved.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
