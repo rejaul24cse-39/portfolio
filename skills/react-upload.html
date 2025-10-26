@@ -5,21 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upload Project - React</title>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#f7f7fb;margin:0}
-    main{max-width:900px;margin:2rem auto;background:#fff;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.08);padding:1.5rem}
-    a{color:#0b74ff;text-decoration:none}
-    a:hover{color:#ff6a3d}
-    .back{display:inline-block;margin-bottom:1rem}
-    .upload{border:2px dashed #c9c9d3;border-radius:12px;padding:1.25rem;text-align:center;background:#fafafe}
-    input[type=file]{display:block;margin:.75rem auto}
-    button{background:#6a5acd;color:#fff;border:0;padding:.6rem 1rem;border-radius:8px;cursor:pointer}
-    button:hover{background:linear-gradient(135deg,#6a5acd,#ff8a00)}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7fb;
+    }
+    /* Navigation Bar Styles */
+    nav.navbar {
+      background: linear-gradient(135deg, #6a5acd, #ff8a00);
+      padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    nav.navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+    nav.navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    nav.navbar a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    nav.navbar a.active {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    /* Main Content Styles */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+    }
+    a {
+      color: #0b74ff;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ff6a3d;
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .upload {
+      border: 2px dashed #c9c9d3;
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      background: #fafafe;
+    }
+    input[type=file] {
+      display: block;
+      margin: 0.75rem auto;
+    }
+    button {
+      background: #6a5acd;
+      color: #fff;
+      border: 0;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #6a5acd, #ff8a00);
+    }
   </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="react-upload.html" class="active">Skills</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
   <!-- Upload page for React projects -->
   <main>
-    <a class="back" href="../index.html">← Back to Home</a>
     <h1>Upload Project - React</h1>
     <p>Use this page to upload your React project files.</p>
     <div class="upload">
