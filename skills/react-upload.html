@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Project - React</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#f7f7fb;margin:0}
+    main{max-width:900px;margin:2rem auto;background:#fff;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.08);padding:1.5rem}
+    a{color:#0b74ff;text-decoration:none}
+    a:hover{color:#ff6a3d}
+    .back{display:inline-block;margin-bottom:1rem}
+    .upload{border:2px dashed #c9c9d3;border-radius:12px;padding:1.25rem;text-align:center;background:#fafafe}
+    input[type=file]{display:block;margin:.75rem auto}
+    button{background:#6a5acd;color:#fff;border:0;padding:.6rem 1rem;border-radius:8px;cursor:pointer}
+    button:hover{background:linear-gradient(135deg,#6a5acd,#ff8a00)}
+  </style>
+</head>
+<body>
+  <!-- Upload page for React projects -->
+  <main>
+    <a class="back" href="../index.html">← Back to Home</a>
+    <h1>Upload Project - React</h1>
+    <p>Use this page to upload your React project files.</p>
+    <div class="upload">
+      <p><strong>Demo only:</strong> File upload requires a backend/server.</p>
+      <input type="file" multiple />
+      <button type="button" onclick="alert('This is a demo UI. Use the GitHub web upload to actually add files.')">Upload</button>
+    </div>
+  </main>
+</body>
+</html>
