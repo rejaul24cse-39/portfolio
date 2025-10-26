@@ -1,290 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Portfolio</title>
-    <style>
-        /* Global Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-        /* Navigation Bar Styles */
-        nav {
-            background-color: #333;
-            padding: 1rem;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        nav ul li {
-            position: relative;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #4CAF50;
-        }
-        /* Dropdown Menu Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #444;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            top: 100%;
-            left: 0;
-        }
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 1rem;
-        }
-        .dropdown-content a:hover {
-            background-color: #555;
-            color: #4CAF50;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        .dropbtn {
-            background-color: transparent;
-            color: white;
-            padding: 0;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .dropbtn:hover {
-            color: #4CAF50;
-        }
-        /* Container and Content Styles */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .project-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .project-card h2 {
-            color: #4CAF50;
-            margin-bottom: 0.5rem;
-        }
-        .project-card h3 {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        .project-card p {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .tech-tag {
-            background: #e0e0e0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-        }
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-        .project-link {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .project-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - Portfolio</title>
+  <style>
+    /* ===== Base styles ===== */
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; color: #222; }
+
+    /* ===== Top navigation (unchanged visual) ===== */
+    nav { background:#333; padding: 1rem; }
+    nav ul { list-style:none; display:flex; gap:2rem; justify-content:center; margin:0; }
+    nav a, .dropbtn { color:#fff; text-decoration:none; font-size:1.05rem; background:none; border:0; cursor:pointer; }
+    nav a:hover, .dropbtn:hover { color:#4CAF50; }
+    .dropdown { position:relative; }
+    .dropdown-content { display:none; position:absolute; background:#444; min-width:200px; top:100%; left:0; z-index:10; }
+    .dropdown-content a { display:block; padding:10px 14px; color:#fff; }
+    .dropdown:hover .dropdown-content { display:block; }
+
+    /* ===== Page filter dropdown (interactive like Gallery) ===== */
+    .filterbar { display:flex; justify-content:center; padding: 20px; }
+    .filter-dropdown { position:relative; }
+    .filter-button { background:#4CAF50; color:#fff; border:0; padding:10px 16px; border-radius:6px; cursor:pointer; }
+    .filter-menu { display:none; position:absolute; background:#fff; border:1px solid #e5e7eb; border-radius:8px; min-width:240px; box-shadow:0 10px 24px rgba(0,0,0,.12); overflow:hidden; margin-top:6px; }
+    .filter-dropdown.active .filter-menu { display:block; }
+    .filter-menu a { display:block; padding:10px 14px; color:#111; cursor:pointer; text-decoration:none; }
+    .filter-menu a:hover { background:#f3f4f6; }
+
+    /* ===== Project grid ===== */
+    .container { max-width:1100px; margin:0 auto; padding: 18px 20px 48px; }
+    h1 { text-align:center; margin: 18px 0 8px; }
+    .subtitle { text-align:center; color:#666; margin-bottom: 10px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:18px; }
+    .project-card { background:#f8f9fb; border:1px solid #e5e7eb; border-radius:12px; padding:16px; display:grid; gap:10px; }
+    .project-card h2 { margin:0; color:#111; font-size:1.15rem; }
+    .project-card h3 { margin:0; color:#4CAF50; font-weight:600; font-size:.95rem; }
+    .project-card p { margin:0; color:#555; font-size:.95rem; }
+    .tech-stack { display:flex; flex-wrap:wrap; gap:6px; }
+    .tech-tag { background:#e8f5e9; color:#256029; padding:4px 8px; border-radius:999px; font-size:.8rem; }
+    .project-links { display:flex; gap:10px; }
+    .project-link { color:#2563eb; text-decoration:none; font-weight:600; }
+
+    /* ===== Hidden utility ===== */
+    .hidden { display:none !important; }
+  </style>
 </head>
 <body>
-    <!-- Enhanced Navigation Bar with Dropdown Menus -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li class="dropdown">
-                <button class="dropbtn">About</button>
-                <div class="dropdown-content">
-                    <a href="about.html">About Me</a>
-                    <a href="about.html#intro">Intro Section</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn">Skills</button>
-                <div class="dropdown-content">
-                    <a href="skills/html-css-upload.html">Frontend</a>
-                    <a href="skills/backend.html">Backend</a>
-                    <a href="skills/tools.html">Tools</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn">Projects</button>
-                <div class="dropdown-content">
-                    <a href="projects.html">All Projects</a>
-                    <a href="projects.html#highlights">Highlights</a>
-                    <a href="projects.html#featured">Featured Work</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn">Gallery</button>
-                <div class="dropdown-content">
-                    <a href="gallery.html">All</a>
-                    <a href="gallery.html#web-design">Web Design</a>
-                    <a href="gallery.html#photography">Photography</a>
-                    <a href="gallery.html#logos">Logos</a>
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn">Contact</button>
-                <div class="dropdown-content">
-                    <a href="contact.html">Contact Form</a>
-                    <a href="contact.html#info">Contact Info</a>
-                    <a href="contact.html#social">Social Media</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-        <h1>My Projects</h1>
-        <p>Here are some of the projects I've worked on recently. Each project showcases different skills and technologies.</p>
-        
-        <div class="projects-grid">
-            <div class="project-card">
-                <h2>E-Commerce Platform</h2>
-                <h3>Full Stack Web Application</h3>
-                <p>A comprehensive e-commerce platform with user authentication, product management, shopping cart, and payment integration.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">MongoDB</span>
-                    <span class="tech-tag">Express</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">View Demo</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h2>Weather Dashboard</h2>
-                <h3>React Application</h3>
-                <p>A responsive weather application that provides real-time weather data, forecasts, and location-based weather information.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">API Integration</span>
-                    <span class="tech-tag">CSS3</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">View Demo</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h2>Task Management System</h2>
-                <h3>MERN Stack Application</h3>
-                <p>A collaborative task management tool with team features, deadlines, priorities, and real-time updates.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">MongoDB</span>
-                    <span class="tech-tag">Express</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">View Demo</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h2>Portfolio Website</h2>
-                <h3>Static Website</h3>
-                <p>A personal portfolio website showcasing projects, skills, and professional experience with a modern design.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">View Demo</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h2>Social Media Dashboard</h2>
-                <h3>Python & Flask Application</h3>
-                <p>An analytics dashboard for tracking social media metrics across multiple platforms with data visualization.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">Chart.js</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">View Demo</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h2>Blog Platform</h2>
-                <h3>Content Management System</h3>
-                <p>A fully-featured blog platform with markdown support, comments, categories, and user management.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">View Demo</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
+  <!-- Top navigation (kept consistent) -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <button class="dropbtn">About</button>
+        <div class="dropdown-content">
+          <a href="about.html">About Me</a>
+          <a href="about.html#background">Background</a>
+          <a href="about.html#education">Education</a>
         </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Skills</button>
+        <div class="dropdown-content">
+          <a href="skills/html.html">HTML</a>
+          <a href="skills/css.html">CSS</a>
+          <a href="skills/javascript.html">JavaScript</a>
+          <a href="skills/python.html">Python</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Projects</button>
+        <div class="dropdown-content">
+          <a href="projects.html">All Projects</a>
+          <a href="projects.html#highlights">Highlights</a>
+          <a href="projects.html#featured">Featured Work</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Gallery</button>
+        <div class="dropdown-content">
+          <a href="gallery.html">All</a>
+          <a href="gallery.html#web-design">Web Design</a>
+          <a href="gallery.html#photography">Photography</a>
+          <a href="gallery.html#logos">Logos</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Contact</button>
+        <div class="dropdown-content">
+          <a href="contact.html">Contact Form</a>
+          <a href="contact.html#info">Contact Info</a>
+          <a href="contact.html#social">Social Media</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Projects</h1>
+    <p class="subtitle">Filter by project type to quickly find relevant work.</p>
+
+    <!-- Page filter dropdown similar to Gallery -->
+    <div class="filterbar">
+      <div class="filter-dropdown" id="projFilter">
+        <button class="filter-button" id="projFilterBtn">Show All ▼</button>
+        <div class="filter-menu" id="projFilterMenu">
+          <!-- data-filter="all" shows all cards -->
+          <a data-filter="all">Show All</a>
+          <a data-filter="fullstack">Full Stack</a>
+          <a data-filter="frontend">Frontend</a>
+          <a data-filter="backend">Backend</a>
+          <a data-filter="python">Python/Flask</a>
+          <a data-filter="cms">CMS</a>
+          <a data-filter="static">Static Website</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Projects grid: add data-category on each card -->
+    <div class="grid" id="projectsGrid">
+      <div class="project-card" data-category="fullstack">
+        <h2>E-commerce Website</h2>
+        <h3>Full Stack</h3>
+        <p>An e-commerce platform with product listings, cart, checkout, and user auth.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">MongoDB</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="#">View Demo</a>
+          <a class="project-link" href="#">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="frontend">
+        <h2>Weather App</h2>
+        <h3>Frontend Application</h3>
+        <p>A responsive weather app fetching live data and showing 7-day forecasts.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">HTML5</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="#">View Demo</a>
+          <a class="project-link" href="#">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="fullstack">
+        <h2>Task Management System</h2>
+        <h3>Full Stack</h3>
+        <p>Task boards with drag-and-drop, auth, and real-time updates.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Vue</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="#">View Demo</a>
+          <a class="project-link" href="#">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="static">
+        <h2>Portfolio Website</h2>
+        <h3>Static Website</h3>
+        <p>A personal portfolio with projects, skills, and contact information.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">HTML5</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="#">View Demo</a>
+          <a class="project-link" href="#">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="python">
+        <h2>Social Media Dashboard</h2>
+        <h3>Python & Flask Application</h3>
+        <p>Analytics dashboard tracking metrics with interactive charts.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">Chart.js</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="#">View Demo</a>
+          <a class="project-link" href="#">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="cms">
+        <h2>Blog Platform</h2>
+        <h3>Content Management System</h3>
+        <p>Markdown posts, comments, categories, and user roles.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="#">View Demo</a>
+          <a class="project-link" href="#">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript: filter behavior copied from Gallery approach -->
+  <script>
+    const projFilter = document.getElementById('projFilter');
+    const projFilterBtn = document.getElementById('projFilterBtn');
+    const projFilterMenu = document.getElementById('projFilterMenu');
+    const projOptions = projFilterMenu.querySelectorAll('a[data-filter]');
+    const cards = document.querySelectorAll('.project-card');
+
+    // Toggle the dropdown
+    projFilterBtn.addEventListener('click', () => {
+      projFilter.classList.toggle('active');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!projFilter.contains(e.target)) {
+        projFilter.classList.remove('active');
+      }
+    });
+
+    // Filter cards
+    projOptions.forEach(opt => {
+      opt.addEventListener('click', function() {
+        const value = this.getAttribute('data-filter');
+        projFilterBtn.textContent = `${this.textContent} ▼`;
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (value === 'all' || cat === value) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        projFilter.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
